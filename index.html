@@ -204,6 +204,8 @@ p.body{font-size:15.5px;line-height:1.85;color:var(--mute);margin:0 0 12px}
 .flow .fs .no{font-family:var(--disp);font-weight:900;font-size:12px;letter-spacing:.14em;color:var(--red);margin-bottom:14px}
 .flow .fs h4{font-family:var(--disp);font-weight:700;font-size:15.5px;margin:0 0 8px;letter-spacing:-.02em}
 .flow .fs p{font-size:13px;line-height:1.7;color:var(--mute);margin:0}
+@media(min-width:901px){#p04 .flow .fs{display:flex;flex-direction:column}
+  #p04 .flow .fs h4{min-height:2.5em}}
 .flow .fs::after{content:"";position:absolute;right:-11px;top:50%;width:8px;height:8px;
   border-top:1.5px solid var(--red);border-right:1.5px solid var(--red);transform:translateY(-50%) rotate(45deg);z-index:3}
 .flow .fs:last-child::after{display:none}
@@ -390,11 +392,11 @@ footer .eyebrow{color:#fff}footer .eyebrow::before{background:var(--surface)}
 .kpi{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);
   border-left:1px solid var(--line)}
 .kpi .k{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 24px 32px;min-width:0}
-.kpi .k b{font-family:var(--disp);font-weight:900;font-size:clamp(38px,4.6vw,60px);line-height:1;
-  letter-spacing:-.05em;display:block}
-.kpi .k i{font-style:normal;display:block;font-family:var(--disp);font-weight:800;font-size:11.5px;
-  letter-spacing:.16em;color:var(--red);margin:12px 0 8px}
-.kpi .k>span{font-size:12.5px;color:var(--mute);line-height:1.6;display:block}
+.kpi .k b{font-family:var(--disp);font-weight:900;font-size:clamp(32px,3.8vw,50px);line-height:1;
+  letter-spacing:-.05em;display:inline-block;vertical-align:baseline}
+.kpi .k i{font-style:normal;display:inline-block;vertical-align:baseline;font-family:var(--disp);
+  font-weight:800;font-size:15px;letter-spacing:-.01em;color:var(--red);margin:0 0 0 8px}
+.kpi .k>span{font-size:12.5px;color:var(--mute);line-height:1.6;display:block;margin-top:14px}
 .kpi .k b span{font-size:inherit;color:inherit;line-height:inherit}
 @media(max-width:1000px){.kpi{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.kpi{grid-template-columns:repeat(2,1fr)}}
@@ -426,6 +428,33 @@ footer .eyebrow{color:#fff}footer .eyebrow::before{background:var(--surface)}
 @media(max-width:760px){.gaxis{margin-left:0}
   .grow{grid-template-columns:1fr;gap:6px;padding:12px 0;border-bottom:1px solid var(--line-s)}
   .grow .gl{padding-right:0}}
+
+/* ---- milestone flags over the timeline ---- */
+.gflags{display:grid;grid-template-columns:200px 1fr;margin-bottom:2px}
+.gflags::before{content:""}
+.gftrack{position:relative;height:52px}
+.gf{position:absolute;bottom:0;max-width:230px}
+.gf::before{content:"";position:absolute;bottom:-6px;width:8px;height:8px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 0 3px var(--surface)}
+.gf b{display:block;font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:-.03em;color:var(--red);line-height:1.1}
+.gf span{display:block;font-size:11.5px;color:var(--ink-2);font-weight:600;margin-top:2px;white-space:nowrap}
+.gf.lft{right:calc(100% - var(--x));text-align:right;padding-right:11px}
+.gf.lft::before{right:-4px}
+.gf.rgt{left:var(--x);text-align:left;padding-left:11px}
+.gf.rgt::before{left:-4px}
+.gbody{position:relative}
+.gv{position:absolute;top:0;bottom:0;width:1px;display:block;z-index:2;pointer-events:none;
+  left:calc(200px + (100% - 200px) * var(--x));
+  background:repeating-linear-gradient(to bottom,var(--red) 0 4px,transparent 4px 9px);opacity:.45}
+.gnote{display:none}
+@media(max-width:760px){
+  .gflags{display:none}
+  .gv{display:none}
+  .gnote{display:grid;gap:9px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+  .gnote span{font-size:12.5px;color:var(--ink-2);font-weight:600;position:relative;padding-left:15px}
+  .gnote i{position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:50%;background:var(--red);display:block}
+}
+}
 
 /* ============ MOVE STEPS ============ */
 .mvs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -525,20 +554,41 @@ body{padding-left:240px}
 /* ============ NUMBERS (label units) ============ */
 #glance .statgrid .st{background:var(--surface);padding:34px 30px 34px}
 #glance .statgrid .st .n{display:block;font-size:clamp(34px,4.2vw,54px);line-height:1.02}
-#glance .statgrid .st .n .u{display:block;font-size:13px;font-weight:800;letter-spacing:.13em;
-  margin-top:12px;line-height:1.45;color:var(--red);white-space:normal}
+#glance .statgrid .st .n .u{display:inline;font-size:15px;font-weight:800;letter-spacing:-.01em;
+  margin-left:7px;line-height:1.45;color:var(--red);white-space:normal}
 #glance .statgrid .st .n.txt{letter-spacing:-.045em}
 #glance .statgrid .st .l{font-family:var(--disp);font-weight:800;font-size:14px;letter-spacing:-.01em;
   color:var(--ink);margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
 #glance .statgrid .st .s{margin-top:7px;font-size:13.5px;color:var(--mute);line-height:1.65}
+.boxhead{display:inline-block;font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:-.02em;
+  color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;padding:9px 18px;margin:0 0 20px}
 .subhead{font-family:var(--disp);font-weight:800;font-size:10.5px;letter-spacing:.2em;
   color:var(--mute-2);margin:0 0 16px;text-transform:uppercase}
 .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .mi{background:var(--surface);padding:20px 22px 22px}
 .mi b{font-family:var(--disp);font-weight:900;font-size:30px;letter-spacing:-.04em;line-height:1;display:block}
 .mi b i{font-style:normal;color:var(--red);font-size:.62em}
-.mi span{display:block;font-family:var(--disp);font-weight:800;font-size:10px;letter-spacing:.14em;
+.mi span{display:block;font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:.02em;
   color:var(--red);margin:10px 0 5px}
+.mi span:first-child{margin:0 0 10px}
+.mi b u{display:inline-block;text-decoration:none;font-size:15px;font-weight:800;color:var(--red);margin-left:7px;letter-spacing:-.01em}
+.cards.c2 .cd h4.sml{font-family:var(--disp);font-weight:800;font-size:clamp(21px,2.2vw,27px);
+  letter-spacing:-.035em;line-height:1.25;margin:0 0 14px}
+.chk{border-top:1px solid var(--line);padding-top:16px}
+.chk .ct{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--sub);margin:0 0 11px}
+.chk ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 18px}
+.chk li{font-size:12.5px;color:var(--ink-2);line-height:1.5;padding-left:13px;position:relative}
+.chk li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--sub);opacity:.55}
+@media(max-width:640px){.chk ul{grid-template-columns:1fr}}
+.bignums{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.bn{padding:30px 0 32px}
+.bn+.bn{border-left:1px solid var(--line);padding-left:34px}
+.bn b{display:block;font-family:var(--disp);font-weight:900;font-size:clamp(46px,6vw,78px);
+  line-height:1;letter-spacing:-.05em}
+.bn b i{font-style:normal;color:var(--red);font-size:.56em}
+.bn span{display:block;font-family:var(--disp);font-weight:800;font-size:15.5px;margin-top:18px;letter-spacing:-.02em}
+.bn em{font-style:normal;display:block;font-size:12.5px;color:var(--mute);margin-top:6px}
+@media(max-width:640px){.bignums{grid-template-columns:1fr}.bn+.bn{border-left:0;border-top:1px solid var(--line);padding-left:0}}
 .mi em{font-style:normal;font-size:12.5px;color:var(--mute)}
 @media(max-width:820px){.mini{grid-template-columns:repeat(2,1fr)}}
 
@@ -661,6 +711,8 @@ body{padding-left:240px}
 .role{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:44px}
 .rb{background:var(--surface);padding:22px 24px 24px}
 .rb dt{font-family:var(--disp);font-weight:800;font-size:10.5px;letter-spacing:.16em;color:var(--red);margin-bottom:9px}
+.rb dt em.sole{font-style:normal;display:inline-block;margin-left:6px;font-size:9.5px;letter-spacing:.06em;
+  color:#fff;background:var(--red);border-radius:3px;padding:2px 6px;vertical-align:1px}
 .rb dd{margin:0;font-size:14px;line-height:1.7;color:var(--ink-2)}
 @media(max-width:760px){.role{grid-template-columns:1fr}}
 
@@ -678,8 +730,11 @@ body{padding-left:240px}
 /* ============ SWAP (before/after) ============ */
 .swap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:36px}
 .swap span{font-family:var(--disp);font-weight:900;font-size:clamp(44px,6vw,80px);line-height:1;
-  letter-spacing:-.05em;display:flex;align-items:baseline;gap:8px}
+  letter-spacing:-.05em;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .swap span i{font-style:normal;font-size:.24em;font-weight:800;letter-spacing:.1em;color:var(--mute-2)}
+.swap span u{flex:0 0 100%;text-decoration:none;font-family:var(--disp);font-weight:800;
+  font-size:.16em;letter-spacing:.22em;color:var(--mute-2);margin-bottom:10px;line-height:1}
+.swap .to u{color:var(--red)}
 .swap .to,.swap .to i{color:var(--red)}
 .swap .ar{font-size:clamp(24px,3.2vw,42px);color:var(--mute-2);font-weight:800}
 
@@ -737,16 +792,16 @@ body,.sec,.st,.cd,.fs,.tags span,.lv,.gb,.ml,.afcard,.mi,.skc,.dc{transition:bac
 @media(max-width:760px){.role.two{grid-template-columns:1fr}}
 
 /* ============ KPI TEXT VALUE ============ */
-.kpi .k b.sm{font-size:clamp(26px,3.1vw,40px);display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;line-height:1.05}
+.kpi .k b.sm{font-size:clamp(21px,2.5vw,32px);display:inline-flex;align-items:baseline;gap:4px;flex-wrap:nowrap;line-height:1.05}
 .kpi .k b.sm em{font-style:normal;font-size:.6em;color:var(--mute-2);font-weight:800}
 
 .statgrid.five{grid-template-columns:repeat(5,1fr)}
 @media(max-width:1180px){.statgrid.five{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:820px){.statgrid.five{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.statgrid.five{grid-template-columns:1fr}}
-#glance .statgrid.five .st{padding:28px 22px 30px}
-#glance .statgrid.five .st .n{font-size:clamp(30px,3.2vw,44px)}
-#glance .statgrid.five .st .n .u{font-size:11.5px;letter-spacing:.1em;margin-top:10px}
+#glance .statgrid.five .st{padding:28px 18px 30px}
+#glance .statgrid.five .st .n{font-size:clamp(26px,2.9vw,40px);white-space:nowrap}
+#glance .statgrid.five .st .n .u{font-size:13px;letter-spacing:-.01em;margin-left:6px;white-space:nowrap}
 #glance .statgrid.five .st .l{font-size:13px;margin-top:16px;padding-top:14px}
 #glance .statgrid.five .st .s{font-size:12.5px}
 .oneline{border-left:3px solid var(--red);padding:14px 0 14px 22px;font-size:15.5px;line-height:1.8;
@@ -1002,7 +1057,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     <div class="split a" style="margin-bottom:64px">
       <div class="rv">
         <p class="eyebrow">Who I am</p>
-        <h2 class="big">운영의 빈틈을 발견하고,<br>기준과 프로세스로<br>채우는 총무입니다.</h2>
+        <h2 class="big">운영의 빈틈을 발견하고,<br>기준과 프로세스로<br>정리합니다.</h2>
       </div>
       <div class="rv d1">
         <p class="lead" style="margin-bottom:0">오피스·자산·협력업체·규정·시스템 등 조직 운영 전반을 경험하며, 반복되는 문제를 단순히 처리하기보다 <span class="hl">원인을 파악하고 다음에도 사용할 수 있는 기준과 프로세스로</span> 정리해왔습니다.</p>
@@ -1038,15 +1093,15 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
       <h2 class="big">한눈에 보는 경험 범위</h2>
     </div>
     <div class="statgrid five">
-      <div class="st rv"><div class="n"><span class="cnt" data-to="150">0</span><span class="u">USERS</span></div>
+      <div class="st rv"><div class="n"><span class="cnt" data-to="150">0</span><span class="u">명 규모</span></div>
         <div class="l">Workplace Operations</div><div class="s">150명 규모 오피스 운영</div></div>
-      <div class="st rv d1"><div class="n"><span class="cnt" data-to="3600">0</span><span class="u">+ ASSETS / YEAR</span></div>
+      <div class="st rv d1"><div class="n"><span class="cnt" data-to="3600">0</span><span class="u">+ 연 자산실사</span></div>
         <div class="l">Asset Management</div><div class="s">연 3,600건 규모 전사 자산실사 실무 참여</div></div>
-      <div class="st rv d2"><div class="n"><span class="cnt" data-to="20">0</span><span class="u">+ VENDORS</span></div>
+      <div class="st rv d2"><div class="n"><span class="cnt" data-to="20">0</span><span class="u">+ 협력사 관리</span></div>
         <div class="l">Vendor Management</div><div class="s">협력업체 계약 · 운영 · 커뮤니케이션</div></div>
-      <div class="st rv d3"><div class="n"><span class="cnt" data-to="2">0</span><span class="u">POLICIES REVISED</span></div>
+      <div class="st rv d3"><div class="n"><span class="cnt" data-to="2">0</span><span class="u">규정 변경</span></div>
         <div class="l">Policy Improvement</div><div class="s">출장규정 · 개인차량 운영규정 개정</div></div>
-      <div class="st rv d4"><div class="n txt">ERP<span class="u">IMPLEMENTATION</span></div>
+      <div class="st rv d4"><div class="n txt">ERP<span class="u">구축</span></div>
         <div class="l">Process Improvement</div><div class="s">분산 업무를 ERP 기반 프로세스로 통합</div></div>
     </div>
   </div>
@@ -1220,32 +1275,41 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     <div class="chead">
       <div class="idx rv">PROJECT 01<span>OFFICE RELOCATION</span></div>
       <div class="rv d1">
-        <h2 class="big">3개월 동안 두 차례 이전을 연결하며<br><mark class="mk">업무 공백 없이</mark> 오피스를 전환했습니다.</h2>
+        <h2 class="big">3개월 동안 두 차례 이전하며,<br><mark class="mk">업무 공백 없이</mark> 오피스를 전환했습니다.</h2>
         <p class="lead">기존 1,800평 규모에서 800평대 신규 오피스로 전환하며, 공간 축소에 맞춰 자산 선별과 재배치를 병행했습니다.</p>
       </div>
     </div>
 
     <dl class="role rv d1">
-      <div class="rb"><dt>PROJECT SCALE</dt><dd>150명 · 기존 1,800평 → 신규 800평대 · 2회 이전 · 약 3개월 · 서울 · 부산 · 군포</dd></div>
-      <div class="rb"><dt>MY ROLE</dt><dd>이전 실무 담당 — 업체 · 일정 관리, 자산 이동, 공간 세팅, 전사 공지, 현장 대응 (실무 2인 + HR 지원 5인)</dd></div>
-      <div class="rb res"><dt>RESULT</dt><dd>05.30 기존 오피스 철수 → 06.01 임시 오피스 → 07.01 신규 오피스 정시 오픈</dd></div>
+      <div class="rb"><dt>PROJECT SCALE</dt><dd>150명<br>기존 1,800평 → 신규 800평대<br>2회 이전<br>약 3개월<br>서울 · 부산 · 군포</dd></div>
+      <div class="rb"><dt>MY ROLE</dt><dd>이전 실무 담당 — 업체 · 일정 관리<br>자산 이동<br>공간 세팅<br>전사 공지<br>현장 대응 (실무 2인 + HR 지원 5인)</dd></div>
+      <div class="rb res"><dt>RESULT</dt><dd>05.30 기존 오피스 철수<br>06.01 임시 오피스<br>07.01 신규 오피스 정시 오픈</dd></div>
     </dl>
 
     <div class="kpi four rv d1">
-      <div class="k"><b><span class="cnt" data-to="150">0</span></b><i>USERS</i><span>업무 연속성 유지</span></div>
-      <div class="k"><b><span class="cnt" data-to="2">0</span></b><i>MOVES</i><span>Temporary → New Office</span></div>
-      <div class="k"><b><span class="cnt" data-to="3">0</span></b><i>SITES</i><span>서울 · 부산 · 군포</span></div>
-      <div class="k"><b class="sm">1,800<em>→</em>800<em>+</em></b><i>PYEONG</i><span>공간 축소 이전</span></div>
+      <div class="k"><b><span class="cnt" data-to="150">0</span></b><i>명</i><span>업무 연속성 유지</span></div>
+      <div class="k"><b><span class="cnt" data-to="2">0</span></b><i>회 이전</i><span>임시 오피스 → 신규 오피스</span></div>
+      <div class="k"><b><span class="cnt" data-to="3">0</span></b><i>개 사업장</i><span>서울 · 부산 · 군포</span></div>
+      <div class="k"><b class="sm">1,800<em>→</em>800<em>+</em></b><i>평</i><span>공간 축소 이전</span></div>
     </div>
 
     <!-- ★ CORE GRAPHIC : CONCURRENCY -->
     <div class="rv" style="margin:82px 0 24px">
       <p class="eyebrow">Concurrency</p>
-      <h3 class="mid">철수 · 임시 오피스 · 신규 구축이<br>동시에 진행됐습니다</h3>
-      <p class="body" style="max-width:72ch">기존 오피스 종료와 신규 오피스 오픈 사이의 공백을 임시 오피스로 연결해야 했기 때문에, <span class="hl">철수 · 임시 구축 · 신규 구축 · 자산 이동 · 일상 운영을 병행 관리</span>했습니다.</p>
+      <h3 class="mid"><mark class="mk">철수 · 임시 오피스 · 신규오피스 구축</mark>이 동시에 진행됐습니다.</h3>
+      <p class="body" style="max-width:72ch">기존 오피스 종료 후 신규 오피스 오픈까지 임시 오피스를 운영해야 했기 때문에, <span class="hl">기존 오피스 철수 · 임시 오피스 구축 · 신규 오피스 구축 · 자산 이동 · 일상 운영을 동시에 병행 관리</span>했습니다.</p>
     </div>
     <div class="gantt rv d1">
       <div class="gaxis"><span>04.01</span><span>05.01</span><span>06.01</span><span>07.01</span></div>
+      <div class="gflags">
+        <div class="gftrack">
+          <div class="gf lft" style="--x:65%"><b>05.30</b><span>기존 오피스 철수 완료</span></div>
+          <div class="gf rgt" style="--x:67%"><b>06.01</b><span>임시 오피스 OPEN</span></div>
+          <div class="gf lft" style="--x:100%"><b>07.01</b><span>신규 본 오피스 OPEN</span></div>
+        </div>
+      </div>
+      <div class="gbody">
+        <i class="gv" style="--x:.65"></i><i class="gv" style="--x:.67"></i><i class="gv" style="--x:1"></i>
       <div class="grow">
         <div class="gl">기존 오피스 철수</div>
         <div class="gt"><span class="gb" style="--l:0%;--w:65%"><em>04.01 – 05.30</em></span></div>
@@ -1270,11 +1334,12 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
         <div class="gl">일상 운영 병행</div>
         <div class="gt"><span class="gb alt" style="--l:0%;--w:100%"><em>자산실사 · 비용 마감 · 협력업체 유지보수 등 상시 운영</em></span></div>
       </div>
-    </div>
-    <div class="miles rv d1">
-      <div class="ml"><b>05.30</b><span>기존 오피스 철수 완료</span><em>퇴거 · 자산 반출 종료</em></div>
-      <div class="ml"><b>06.01</b><span>임시 오피스 OPEN</span><em>필수 출근 부서 업무 재개</em></div>
-      <div class="ml"><b>07.01</b><span>신규 본 오피스 OPEN</span><em>계획된 날짜에 정시 오픈</em></div>
+      </div>
+      <div class="gnote">
+        <span><i></i>05.30 기존 오피스 철수 완료 — 퇴거 · 자산 반출 종료</span>
+        <span><i></i>06.01 임시 오피스 OPEN — 필수 출근 부서 업무 재개</span>
+        <span><i></i>07.01 신규 본 오피스 OPEN — 계획된 날짜에 정시 오픈</span>
+      </div>
     </div>
 
     <div class="sites rv d1" style="margin-top:22px">
@@ -1312,31 +1377,27 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     </div>
 
     <dl class="role two rv d1">
-      <div class="rb"><dt>MY ROLE</dt><dd>회의실 구조 검토 · 장비 구성 확인 · 업체 미팅 및 설치 조율 · 사용자 환경 테스트 · 이용 가이드북 제작 · 안내 영상 제작 · 이용자 설문 · 문제 재현 테스트</dd></div>
-      <div class="rb res"><dt>RESULT</dt><dd>이용자 50명의 피드백을 기반으로 정책 · 가이드 · 장비 개선사항 반영</dd></div>
+      <div class="rb"><dt>MY ROLE</dt><dd><ul class="rbl"><li>회의실 구조 검토 · 장비 구성 확인</li><li>업체 미팅 및 설치 조율</li><li>사용자 환경 테스트 · 문제 재현 테스트</li><li>이용 가이드북 · 안내 영상 제작</li><li>이용자 설문 설계 및 수집</li></ul></dd></div>
+      <div class="rb res"><dt>RESULT</dt><dd><ul class="rbl"><li>이용자 50명 피드백 확보</li><li>정책 · 가이드 · 장비 개선사항 반영</li><li>15종의 가이드북 · 안내 영상 · 공간별 안내물 완성</li></ul></dd></div>
     </dl>
 
-    <div class="rv d1" style="margin-bottom:22px"><p class="subhead">Meeting rooms</p></div>
-    <div class="rooms rv d1" style="margin-bottom:22px">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
     <div class="mini three rv d2" style="margin-bottom:76px">
-      <div class="mi"><b>11</b><span>MEETING ROOMS</span><em>용도가 다른 방 11개 구축</em></div>
-      <div class="mi"><b>15<i>+</i></b><span>GUIDES</span><em>가이드북 · 안내 영상 · 공간별 안내물</em></div>
-      <div class="mi"><b>50</b><span>USER FEEDBACK</span><em>이용자 50명 의견 수집 (전체의 33%)</em></div>
+      <div class="mi"><span>회의실</span><b>11</b><em>용도가 다른 방 11개 구축</em></div>
+      <div class="mi"><span>운영 자료</span><b>15<i>+</i></b><em>가이드북 · 안내 영상 · 공간별 안내물</em></div>
+      <div class="mi"><span>이용자 피드백</span><b>50</b><em>이용자 50명 의견 수집 (전체의 33%)</em></div>
     </div>
 
     <div class="rv" style="margin-bottom:26px">
       <p class="eyebrow">Improvement cycle</p>
       <h3 class="mid">회의실 사용 중 문제가 생기면,<br>재발하지 않도록 개선했습니다</h3>
-      <p class="body" style="max-width:70ch">개별 문의에 반복 대응하기보다 <span class="hl">이용자 의견을 수집하고 문제를 재현해 원인을 분류한 뒤</span>, 가이드 · 장비 개선으로 연결했습니다.</p>
+      <p class="body" style="max-width:78ch">개별 문의에 반복 대응하기보다 <span class="hl">이용자 의견을 수집하고 문제를 재현해 원인을 분류한 뒤</span>, 가이드 제작 및 장비 오류 개선을 했습니다.</p>
     </div>
     <div class="surv rv d1" style="margin-bottom:30px">
       <div class="ring" style="--p:33"><b>33<i>%</i></b></div>
       <div>
         <h4 class="sml">이용자 50명의 피드백 확보</h4>
         <p class="cap" style="margin:-4px 0 12px">전체 구성원 150명의 33%</p>
-        <p class="body" style="margin:0">회의실 구축 후 실제 사용 과정에서 발생한 불편과 오류를 수집하고, <span class="hl">동일한 사용 환경에서 직접 테스트해 문제를 재현</span>했습니다. 확인된 이슈는 가이드 보완과 장비 개선으로 연결해 반복 발생을 줄였습니다.</p>
+        <p class="body" style="margin:0">회의실 구축 후 실제 사용 과정에서 발생한 불편과 오류를 수집하고, <span class="hl">동일한 사용 환경에서 직접 테스트해 문제를 재현</span>했습니다. 확인된 이슈는 가이드 보완과 장비 개선으로 오류 발생을 줄였습니다.</p>
       </div>
     </div>
     <div class="flow rv d1" style="margin-bottom:70px">
@@ -1367,7 +1428,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     <div class="chead">
       <div class="idx rv">PROJECT 03<span>ASSET &amp; VENDOR OPERATIONS</span></div>
       <div class="rv d1">
-        <h2 class="big">연 3,600건 자산실사를 운영하며,<br>관리 방식 자체도 검토했습니다.</h2>
+        <h2 class="big">연 3,600건 자산실사를 운영하며,<br>관리 방식도 검토했습니다.</h2>
         <p class="lead">자산실사와 비용 마감은 일회성 업무가 아니라 <span class="hl">정기적으로 반복되는 업무</span>입니다. 연 단위로 실사를 하지만, 오피스 이전이 진행되는 동안에도 정기 실사와 비용 마감을 병행했었습니다.</p>
       </div>
     </div>
@@ -1381,7 +1442,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     <div class="rv" style="margin:70px 0 22px">
       <p class="eyebrow">Asset flow</p>
       <h3 class="mid">자산 운영에도 ESG 관점을 반영했습니다</h3>
-      <p class="body" style="max-width:72ch">오피스 이전 과정에서 사용 가능한 가구와 비품은 <span class="hl">재사용 대상으로 분류</span>하고, 실제 보유 현황에 맞춰 자산 목록도 함께 정비했습니다.</p>
+      <p class="body" style="max-width:72ch">오피스 이전 과정에서 사용 가능한 가구와 비품은 <span class="hl">재사용 대상으로 분류</span>하고,<br>실제 보유 현황에 맞춰 자산 목록도 함께 정비했습니다.</p>
     </div>
     <div class="aflow rv d1" style="margin-bottom:76px">
       <div class="afhead">
@@ -1425,15 +1486,15 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
       <p class="subhead">비교 항목</p>
       <div class="tags"><span>연동 범위</span><span>데이터 이관</span><span>실사 방식</span><span>사용성</span><span>도입 조건</span></div>
     </div>
-    <p class="oneline rv d1" style="margin-bottom:76px">연동 범위 · 데이터 이관 · 사용성 · 도입 조건을 비교해 향후 시스템 전환 시 활용할 수 있는 <b>검토 기준을 정리</b>했습니다.</p>
+    <p class="body rv d1" style="margin-bottom:76px;max-width:80ch">연동 범위 · 데이터 이관 · 사용성 · 도입 조건을 비교해 향후 시스템 전환 시 활용할 수 있는 <b>검토 기준을 정리</b>했습니다.</p>
 
     <div class="rv" style="margin-bottom:22px">
       <p class="eyebrow">Vendor &amp; cost</p>
       <h3 class="mid">협력업체 운영과 비용 마감</h3>
     </div>
     <div class="mini two rv d1">
-      <div class="mi"><b>20<i>+</i></b><span>VENDORS</span><em>시설 · 통신 · 보안 · 렌탈 등 계약 · 갱신 · 유지보수</em></div>
-      <div class="mi"><b>30</b><span>COSTS / MONTH</span><em>월평균 약 30건 비용 마감 · 이전 기간에도 일정 유지</em></div>
+      <div class="mi"><b>20<i>+</i><u>개사</u></b><em>시설 · 통신 · 보안 · 렌탈 등 계약 · 갱신 · 유지보수</em></div>
+      <div class="mi"><b>30<u>건 / 월</u></b><em>월평균 약 30건 비용 마감 · 이전 기간에도 일정 유지</em></div>
     </div>
   </div>
 </section>
@@ -1445,12 +1506,29 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
       <div class="idx rv">PROJECT 04<span>POLICY &amp; SYSTEM</span></div>
       <div class="rv d1">
         <p class="ptag"><b>규정 변경</b><em>POLICY REVISION</em></p>
-        <h2 class="big">변화한 트렌드를 반영해<br>규정을 정비했습니다.</h2>
+        <h2 class="big">변화한 트렌드를 반영해<br>규정을 개정했습니다.</h2>
         <p class="lead">사내 운영 데이터와 외부 기준을 함께 검토해 <span class="hl">개정 근거를 만들고</span>, 확정된 기준을 사내 규정에 반영했습니다.</p>
       </div>
     </div>
 
-    <div class="flow vf rv d1" style="margin-bottom:30px">
+    <div class="cards c2 rv d1" style="margin-bottom:44px">
+      <div class="cd">
+        <div class="kk">POLICY 01</div>
+        <h4 class="sml">출장규정 개정</h4>
+        <p class="body" style="font-size:14.5px;margin:0 0 20px">실제 출장 집행 데이터를 검토해 숙박비 한도를 상향하고 출장 일비 지급 기준을 조정했습니다.</p>
+        <div class="chk"><p class="ct">검토한 데이터</p>
+          <ul><li>지역별 출장 빈도 · 숙박비 집행액</li><li>기존 숙박비 한도 대비 실제 집행 수준</li><li>출장 일수 · 일비 지급 현황</li><li>주요 출장지역 숙박 시세 · 외부기관 출장비 기준</li></ul></div>
+      </div>
+      <div class="cd">
+        <div class="kk">POLICY 02</div>
+        <h4 class="sml">개인차량 운영규정 개정</h4>
+        <p class="body" style="font-size:14.5px;margin:0 0 20px">개인차량 운행 시 유종별 유류비 정산 기준을 개정했습니다. 운행거리 · 유종 · 기존 지급 기준을 검토해 개정 근거를 마련했습니다.</p>
+        <div class="chk"><p class="ct">검토한 데이터</p>
+          <ul><li>개인차량 이용 건수 · 운행거리</li><li>유종별 이용 현황 · 기존 정산 단가</li><li>최근 유류비 수준 및 장기 가격 추이</li><li>외부기관 차량 운행비 기준</li></ul></div>
+      </div>
+    </div>
+
+    <div class="flow rv d1" style="margin-bottom:30px">
       <div class="fs"><div class="no">01 · DATA</div><h4>운영 현황 정리</h4>
         <p>Admin에서 출장 · 차량 운영 데이터를 추출해 실제 사용 패턴과 비용 현황을 파악</p></div>
       <div class="fs"><div class="no">02 · ANALYSIS</div><h4>외부 기준과 시장 트렌드 비교</h4>
@@ -1461,36 +1539,15 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
         <p>확정된 기준을 사내 규정에 반영하고, 국 · 영문 문구와 용어의 정합성을 검수. 변경된 비용 기준과 적용 내용을 구성원이 바로 이해할 수 있도록 전사에 안내</p></div>
     </div>
 
-    <div class="rv d1" style="margin-bottom:26px">
-      <p class="subhead">01 · DATA — 무엇을 봤는가</p>
-      <div class="dcards">
-        <div class="dc"><h5>출장규정</h5>
-          <ul><li>최근 출장 숙박 집행액</li><li>기존 한도 대비 실제 집행 수준</li><li>일비 지급 현황</li><li>출장 유형 · 빈도</li></ul></div>
-        <div class="dc"><h5>개인차량 운영규정</h5>
-          <ul><li>운행거리</li><li>유종</li><li>기존 지급액</li><li>실제 유류비 기준</li></ul></div>
-      </div>
-    </div>
-    <div class="cards c2 rv d1" style="margin-bottom:40px">
-      <div class="cd">
-        <div class="kk">POLICY 01</div>
-        <h4 class="sml">출장규정 개정</h4>
-        <p class="body" style="font-size:14.5px;margin:0">실제 출장 집행 데이터를 검토해 숙박비 한도를 상향하고 출장 일비 지급 기준을 조정했습니다.</p>
-      </div>
-      <div class="cd">
-        <div class="kk">POLICY 02</div>
-        <h4 class="sml">개인차량 운영규정 개정</h4>
-        <p class="body" style="font-size:14.5px;margin:0">개인차량 운행 시 유종별 유류비 정산 기준을 개정했습니다. 운행거리 · 유종 · 기존 지급 기준을 검토해 개정 근거를 마련했습니다.</p>
-      </div>
-    </div>
     <hr class="rule rv" style="margin-bottom:56px">
 
     <div class="rv" style="margin-bottom:26px">
       <p class="eyebrow">Mobile Device · Workplace System</p>
       <h3 class="mid">150명 전사 업무폰 전환,<br>배부 전 실제 사용 환경부터 검증했습니다</h3>
-      <p class="body" style="max-width:72ch">보안, 내선번호, 근태기기, 인트라넷 등 업무폰 전환 시 연결되는 사내 시스템을 사전에 점검하고, <span class="hl">실제 사용자 환경에서 발생할 수 있는 이슈를 파일럿 단계에서 확인</span>했습니다.</p>
+      <p class="body" style="max-width:72ch">보안, 내선번호, 근태기기, 인트라넷 등 업무폰 전환 시 연결되는 사내 시스템을 사전에 점검하고,<br><span class="hl">실제 사용자 환경에서 발생할 수 있는 이슈를 파일럿 단계에서 확인</span>했습니다.</p>
     </div>
     <div class="rv d1" style="margin-bottom:44px">
-      <p class="subhead">전사 업무폰 전환 · 실무 담당</p>
+      <p class="boxhead">전사 업무폰 전환 · 실무 담당</p>
       <div class="arcflow lg" style="margin:10px 0 24px">
         <i>구매</i><u></u><i>파일럿</i><u></u><i>구매</i><u></u><i>셋업</i><u></u><i>롤아웃</i>
       </div>
@@ -1501,7 +1558,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     <hr class="rule rv" style="margin-bottom:44px">
 
     <div class="rv d2">
-      <p class="subhead">근태시스템 변경 · 파일럿 검증 참여</p>
+      <p class="boxhead">근태시스템 변경 · 파일럿 검증 참여</p>
       <p class="body" style="max-width:72ch;margin-top:6px">사용자 관점의 파일럿 테스트에 참여해 시나리오별 적용 여부를 확인하고 오류 · 예외사항을 정리해 피드백했습니다.</p>
       <div class="tags" style="margin-top:16px"><span>정규직 · 계약직</span><span>연차 처리</span><span>재택근무</span><span>코어타임</span></div>
     </div>
@@ -1521,9 +1578,9 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     </div>
 
     <dl class="role rv d1">
-      <div class="rb"><dt>BACKGROUND</dt><dd>통합 시스템 부재 · 인사 · 회계 · 재고 데이터 분산 · 제한된 예산</dd></div>
-      <div class="rb"><dt>MY ROLE</dt><dd>ERP 도입 기획 · 커스터마이징 · 기존 데이터 정비 · 부서별 사용자 교육 (경영관리 단독 담당)</dd></div>
-      <div class="rb res"><dt>RESULT</dt><dd>거래처 매입매출 관리 처리시간 약 60분 → 약 2분</dd></div>
+      <div class="rb"><dt>BACKGROUND</dt><dd><ul class="rbl"><li>통합 시스템 부재</li><li>인사 · 회계 · 재고 데이터 분산</li><li>제한된 예산</li></ul></dd></div>
+      <div class="rb"><dt>MY ROLE <em class="sole">단독</em></dt><dd><ul class="rbl"><li>ERP 도입 기획</li><li>커스터마이징</li><li>기존 데이터 삽입</li><li>부서별 사용자 교육</li></ul></dd></div>
+      <div class="rb res"><dt>RESULT</dt><dd><ul class="rbl"><li>거래처 매입 · 매출 관리 60분 → 2분 (96.7% 단축)</li><li>업무 프로세스 표준화</li><li>부서별 사용자 교육 진행 → 업무 정착</li></ul></dd></div>
     </dl>
 
     <div class="split" style="margin-bottom:76px">
@@ -1538,7 +1595,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
             <div class="track"><span class="fill" style="--w:3.3%"></span></div></div>
         </div>
         <div class="swap">
-          <span class="from">60<i>MIN</i></span><span class="ar">→</span><span class="to">2<i>MIN</i></span>
+          <span class="from"><u>BEFORE</u>60<i>MIN</i></span><span class="ar">→</span><span class="to"><u>AFTER</u>2<i>MIN</i></span>
         </div>
       </div>
       <div class="rv d1">
@@ -1553,8 +1610,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
       </div>
     </div>
 
-    <div class="rv">
-      <hr class="rule" style="margin-bottom:44px">
+    <div class="rv" style="margin-top:8px">
       <div class="quote" style="max-width:none">시스템 도입 이후, 사용자 교육까지 진행했습니다.
         <small>부서별 업무 방식에 맞춰 사용 방법을 안내하고, 실제 업무 과정에서 필요한 기능을 중심으로 사용자 교육을 진행해 실제 업무에 사용되도록 했습니다.</small></div>
     </div>
@@ -1645,10 +1701,10 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
       </div>
     </div>
 
-    <div class="rv d1" style="margin-bottom:20px"><p class="subhead">Communication output</p></div>
-    <div class="mini two rv d1" style="margin-bottom:56px">
-      <div class="mi"><b>70<i>+</i></b><span>NOTICES</span><em>국 · 영문 전사 공지 (2024.06 – 2026.06)</em></div>
-      <div class="mi"><b>15<i>+</i></b><span>GUIDES</span><em>사내 운영 가이드 · 매뉴얼 · 안내 영상</em></div>
+    <div class="rv d1" style="margin-bottom:22px"><p class="eyebrow">Communication output</p></div>
+    <div class="bignums rv d1" style="margin-bottom:56px">
+      <div class="bn"><b>70<i>+</i></b><span>국 · 영문 전사 공지</span><em>2024.06 – 2026.06</em></div>
+      <div class="bn"><b>15<i>+</i></b><span>사내 운영 가이드 · 매뉴얼</span><em>안내 영상 포함</em></div>
     </div>
 
     <div class="rv d1" style="margin-bottom:26px">
@@ -1795,11 +1851,6 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
     </div>
     <p class="oneline rv d1" style="margin-bottom:46px"><b>실무 중심의 지속 학습</b> — 정규 교육 외에도 업무 중 필요한 기능이나 새로운 도구가 생기면 Notion · 생성형 AI · 업무 자동화 관련 강의를 건별로 찾아 학습하고 실제 업무에 적용하고 있습니다.</p>
 
-    <div class="rv" style="margin-bottom:14px"><p class="subhead">Academic</p></div>
-    <div class="kv rv d1" style="margin-bottom:34px">
-      <div class="r"><dt>2013 – 2017</dt><dd>삼육대학교 경영정보학과 졸업 · 학점 3.86 / 4.5</dd></div>
-    </div>
-
     <div class="rv" style="margin-bottom:14px"><p class="subhead">Additional activities</p></div>
     <div class="tags rv d1">
       <span>올리브영 셔터브리티 1 · 2기 (2023.07–2024.06)</span>
@@ -1915,7 +1966,7 @@ mark.mk{background:var(--red);color:#fff;padding:.02em .18em;border-radius:3px;
 </script>
 <script>
 (function(){
-  var EN=["Jang Hari<i>.</i>", "<b>01</b>Intro", "<b>02</b>At a Glance", "<b>03</b>Scope", "<b>04</b>Career", "<b>05</b>Office Relocation", "<b>06</b>Workplace", "<b>07</b>Asset · Vendor", "<b>08</b>Policy · System", "<b>09</b>ERP", "<b>10</b>Day-to-Day", "<b>12</b>Certificates", "<b>13</b>Contact", "JANG HARI", "A general affairs practitioner with hands-on experience<br/>across office relocation, assets, vendors, policy and systems.", "Sony Korea, Corporate Service Team<br/>Jun 2024 – Jun 2026", "150 people · 1,800 → 800+ pyeong<br/>Two-stage office relocation", "Space · Asset · Cost<br/>Policy · System", "I find the gaps in operations<br/>and fill them with standards<br/>anyone can reuse.", "Across office, assets, vendors, policy and systems, I have handled organizational operations end to end. Rather than simply processing recurring problems, I have <span class=\"hl\">traced their causes and turned them into standards and processes that can be reused</span>.", "I understand the full context<br/>of general affairs", "I have run space, assets, cost and policy as one connected operation, covering the entire general affairs workflow.", "I turn recurring problems<br/>into standards and processes", "Inefficiencies found during operations were resolved through policy, systems and guides — and left behind as documented standards.", "I keep work moving<br/>between stakeholders", "I organized requirements from vendors, partner teams and employees, adjusted schedules and priorities, and followed through until the required action was complete.", "Experience at a glance", "Workplace operations for 150 people", "Hands-on role in a company-wide asset audit of 3,600+ items per year", "Vendor contracts, operations and communication", "Revised the business travel and personal vehicle policies", "Consolidated scattered work into ERP-based processes", "Scope of general affairs experience", "From operations to cost, policy and systems, I have <span class=\"hl\">covered a wide range of the practical work an organization needs</span>.", "Operations & Management", "Office relocation and new workspace operations", "Fixed asset audit, classification and redeployment", "Managing facility, security, telecom and rental vendors", "Meeting room, equipment and supply operations and improvement", "On-site response to facility issues and maintenance", "Producing and installing workspace signage and guidance materials", "Accounting & Tax", "Cost execution and monthly closing", "Purchase, sales and voucher management", "Managing procurement and settlement records", "Stakeholder Communication", "Company-wide operational notices in Korean and English", "Vendor contract terms, renewals and maintenance", "Coordinating schedules and requirements across teams", "Collecting user feedback and reflecting improvements", "Issue intake → vendor coordination → confirmation of resolution", "Business Support & Planning", "Analyzing operational data and deriving improvements", "Revising business travel and personal vehicle policies", "ERP implementation, customization and process integration", "Sourcing and comparing suppliers to improve cost and efficiency", "Documenting operational guides, standards and processes", "HR & People Operations", "Payroll calculation and payment <em class=\"src\">(CM Tech)</em>", "Annual leave operations and standards <em class=\"src\">(CM Tech)</em>", "Pilot validation for the time & attendance system", "Scenario checks by employment type and work arrangement", "Employment rules and HR operating standards <em class=\"src\">(CM Tech)</em>", "A career built on understanding<br/>operations and setting standards", "I learned operations on site, built structure in a small organization,<br/>and coordinated complex operations in a large one.\n      <span class=\"arcflow\"><i>OPERATE</i><u></u><i>BUILD</i><u></u><i>COORDINATE</i></span>", "General Affairs · Business Management", "Sony Korea<small>Corporate Service Team</small>", "Responsible for workplace operations for 150 employees, covering office, assets, cost, vendors, policy and systems. In particular, I delivered a two-stage office relocation over roughly three months, along with asset, space and system projects.", "Office Relocation", "Asset Audit", "Vendor Management", "Cost Operations", "Policy Improvement", "System Transition", "National Pension Service, Cheonan Branch<small>Intern</small>", "Handled COVID-19 paid leave subsidy work and withholding-record requests related to workplace special settlements, gaining public-sector administrative experience.", "COVID-19 Paid Leave Subsidy", "Workplace Administration", "Public Institution", "CM Tech<small>Business Management Team, Assistant Manager</small>", "In an environment with no integrated system, I handled business management and consolidated scattered HR, accounting and inventory work into ERP-based processes — from implementation planning and customization to data cleanup and department-level user training.", "ERP Implementation", "Process Integration", "HR · Compensation", "Payroll", "Policy Development", "Jangta Screen Golf<small>Manager</small>", "Handled overall on-site operations — facility and equipment checks, staff attendance, scheduling and pay, and supply management.", "Facility · Equipment", "Attendance · Scheduling", "Supply Management", "Capabilities extended from work outside general affairs", "Freelance English Tutor", "Curriculum design · Material creation · Structuring information from the learner's perspective", "Online Store (Blog Market)<small>Founder · 11 months</small>", "End-to-end operations — planning, sourcing, sales, delivery, CS and settlement", "Samsung SSD Construction Site<small>Safety Management</small>", "On-site safety management · Work permit review · TBM · PPE inspection · Risk assessment", "Two moves in three months, connected end to end —<br/>the office transitioned <mark class=\"mk\">without a gap in work</mark>.", "Moving from a 1,800-pyeong office to a new 800-pyeong-class space, I ran asset selection and redeployment in step with the reduced footprint.", "150 people · 1,800 → 800+ pyeong · 2 moves · approx. 3 months · Seoul · Busan · Gunpo", "Relocation lead on the ground — vendor and schedule management, asset movement, space setup, company-wide notices, on-site response (2 GA staff + 5 HR support)", "May 30 old office closed → Jun 1 temporary office → Jul 1 new office opened on schedule", "Business continuity maintained", "Seoul · Busan · Gunpo", "Relocation with reduced footprint", "Move-out, temporary office and new build<br/>all ran at the same time", "Because the gap between closing the old office and opening the new one had to be bridged by a temporary office, I <span class=\"hl\">managed move-out, temporary build, new build, asset movement and daily operations in parallel</span>.", "Old office move-out", "Temporary office build", "Temporary office operation", "New head office build", "Asset sorting · reselection · movement", "Full period", "Daily operations in parallel", "Asset audit, cost closing, vendor maintenance and other ongoing operations", "Old office move-out complete", "Vacating and asset removal finished", "Temporary office OPEN", "Essential on-site teams resumed work", "New head office OPEN", "Opened on the planned date", "Head Office", "Move-out → Temporary → New", "Busan Office", "Relocation handled in parallel", "Gunpo Warehouse", "Warehouse setup · Asset movement · CCTV", "To fit the reduced footprint, existing furniture and equipment were <b>screened by condition and usability</b> and redeployed to the temporary and new offices.", "Vendors across 6 categories", "I coordinated the sequence between trades and their start and completion points.", "Interior", "Moving", "Telecom", "Furniture", "Security", "Rental", "Built 11 meeting rooms, and checked them<br/>in the actual usage environment.", "I reviewed the layout and equipment configuration of each room and coordinated installation schedules with vendors. After construction, I <span class=\"hl\">tested equipment connections and usage flow in the real environment</span> and produced a <b>guidebook and instructional videos</b> so employees could use the rooms right away.", "Room layout review · Equipment configuration · Vendor meetings and installation coordination · User environment testing · Guidebook production · Instructional video production · User survey · Issue reproduction testing", "Policy, guide and equipment improvements reflected based on feedback from 50 users", "11 rooms built for different purposes", "Guidebook · Instructional video · Space signage", "Feedback collected from 50 users (33% of all employees)", "When something went wrong in a meeting room,<br/>I fixed it so it would not recur", "Rather than answering the same questions one by one, I <span class=\"hl\">collected user feedback, reproduced the issues and classified their causes</span>, then turned them into guide and equipment improvements.", "Feedback secured from 50 users", "33% of all 150 employees", "After the rooms opened, I collected the problems and errors that came up in real use and <span class=\"hl\">reproduced them by testing in the same environment</span>. Confirmed issues were carried through to guide updates and equipment fixes, reducing repeat occurrences.", "Problem detected", "Repeated questions right after opening — screen connection, double bookings", "Feedback from 50", "User survey captured actual pain points · 33% of all employees", "Reproduction testing", "Causes classified as usage, policy or equipment fault", "Improvements applied", "Results reflected in policy, guides and equipment", "15+ operational documents", "So employees could find what they needed without asking, I produced the operational materials before move-in.", "Meeting room guidebook", "Equipment instructional video", "Space signage", "Booking policy", "Running a 3,600-item annual asset audit,<br/>I also reviewed how it was managed.", "Asset audits and cost closing are not one-off tasks — they are <span class=\"hl\">work that repeats on a fixed cycle</span>. The audit runs annually, and I kept both the regular audit and the cost closing running while the office relocation was underway.", "Company-wide asset audit of 3,600 items per year", "20 partner vendors", "Approx. 30 cost items closed per month", "Hands-on participation in the team-level full audit", "Screening and redeploying reusable assets", "Vendor contracts, maintenance and cost closing", "Verified audit data integrity by matching the asset register against physical records", "Compared and reviewed alternative asset management solutions", "An ESG perspective applied to asset operations", "During the relocation, usable furniture and supplies were <span class=\"hl\">classified as reusable</span>, and the asset register was updated to match what was actually held.", "Existing office assets", "Furniture · Equipment · Monitors · Lockers", "Condition · purpose sorting", "Redeployed to temporary office", "70 monitors in good condition", "Desks · Lockers", "Equipment for 2 meeting rooms", "External warehouse storage", "Critical assets · Documents", "Items scheduled for the new office", "Recycling · Donation", "Assets no longer reusable", "Routed to recycling instead of disposal", "Reselection · movement", "New head office", "Jul 1 OPEN · Existing furniture and equipment reused", "Comparative review of asset management solutions<br/>that could integrate with internal systems via API", "Asset management relied heavily on manual checks and file handling. Judging that the same work repeated every audit cycle, I researched on my own <span class=\"hl\">whether system integration could replace it</span>.", "Current-state analysis", "Mapped the manual steps that repeat in audits and register management", "Alternative solution research", "Researched candidate asset management solutions that integrate with internal systems via API", "Multiple vendor meetings · comparison", "Compared features and adoption terms through vendor meetings", "Adoption review", "After internal review, the switch was not carried out", "Comparison criteria", "Integration scope", "Data migration", "Audit method", "Usability", "Adoption terms", "By comparing integration scope, data migration, usability and adoption terms, I <b>documented review criteria</b> that can be used for a future system transition.", "Vendor operations and cost closing", "Contracts, renewals and maintenance for facility, telecom, security and rental", "Approx. 30 cost items closed monthly · schedule maintained through the relocation period", "POLICY REVISION", "Policies rebuilt to reflect<br/>how the work environment had changed.", "By reviewing internal operating data alongside external benchmarks, I <span class=\"hl\">built the case for revision</span> and reflected the agreed standards in company policy.", "Mapping current operations", "Extracted travel and vehicle operating data from Admin to understand actual usage patterns and cost levels", "Benchmarking external standards and market trends", "Reviewed roughly ten years of fuel price movement alongside public-sector travel and vehicle regulations. For lodging, I surveyed actual rates near branch sites and in frequently visited regions to test whether the existing limits were still reasonable", "Turning findings into concrete revision criteria", "Combined fuel price trends, external institutional rules and regional lodging rates into realistic cost standards, then reflected them in the travel and vehicle policy amendments after internal review", "Policy applied · company-wide announcement", "Reflected the confirmed standards in company policy and proofread the Korean and English wording for consistency. Announced the revised cost standards company-wide so employees could understand them immediately", "01 · DATA — What I looked at", "Business travel policy", "Recent lodging spend on business travel", "Actual spend against existing limits", "Daily allowance payment status", "Travel types and frequency", "Personal vehicle policy", "Distance driven", "Fuel type", "Existing reimbursement amounts", "Actual fuel cost benchmarks", "Business travel policy revision", "Reviewed actual travel spend data, raised the lodging limit and adjusted the daily allowance criteria.", "Personal vehicle policy revision", "Revised the fuel reimbursement standard by fuel type for personal vehicle use. Distance driven, fuel type and existing rates were reviewed to build the case for revision.", "Company-wide switch to 150 work phones,<br/>validated in the real environment before rollout", "I checked the internal systems the switch would touch — security, extension numbers, attendance devices, intranet — in advance, and <span class=\"hl\">surfaced issues that could arise in the real user environment during the pilot stage</span>.", "Company-wide work phone transition · hands-on owner", "PURCHASE", "PILOT", "PURCHASE", "SETUP", "ROLLOUT", "I owned the process from purchase through pilot validation, remaining-volume purchase, initial setup and company-wide distribution.", "Security settings", "Extension numbers", "Attendance device recognition", "Intranet compatibility", "Attendance system change · pilot validation", "I took part in the pilot test from the user's perspective, checked how each scenario applied, and documented errors and edge cases as feedback.", "Full-time · Contract", "Annual leave handling", "Remote work", "Core time", "ERP IMPLEMENTATION · CM TECH", "ERP CUSTOMIZATION", "A repetitive task that took about 60 minutes<br/>now takes around 2.", "The company had no enterprise system. HR, accounting and inventory were each managed in separate files. <span class=\"hl\">Within a limited budget, I led the ERP implementation and customization.</span>", "No integrated system · HR, accounting and inventory data scattered · limited budget", "ERP implementation planning · customization · legacy data cleanup · department-level user training (sole owner in business management)", "Vendor purchase and sales management: approx. 60 min → approx. 2 min", "Vendor purchase & sales management", "Based on the repetitive task of looking up and consolidating data across multiple files by hand", "Before — manual work across separate files", "approx. 60 min", "After — ERP-based processing", "approx. 2 min", "Sole owner of office and business management work", "As the only administrative staff member, I handled the full range of business management work — HR, accounting, inventory and system operations.", "ERP implementation", "Implementation planning, customization, legacy data cleanup and department-level user training, all handled directly", "Process integration", "Consolidated HR, accounting and inventory work that had been managed in separate files into ERP-based processes", "HR · Accounting", "Payroll calculation and payment · annual leave standards · purchase, sales and voucher management · monthly closing", "After the system went live, I ran the user training as well.\n        <small>I explained the system to fit each team's way of working and focused the training on the functions they actually needed, so it would be used in real work.</small>", "The ongoing work that keeps<br/>the office running every day", "Alongside project work, I also carried the ongoing operations — <span class=\"hl\">welfare, facilities, onboarding and offboarding, communication, assets and cost closing</span>.", "Employee Support · Welfare", "Resort booking and usage support for employees", "Support for internal welfare programs", "Sending condolence and congratulatory flowers", "MRO and welfare-related purchasing and approvals", "Responding to employee requests", "Workplace · Facility Operations", "Responding to facility issues in the office", "Installing promotional materials and signage", "Purchasing and stock management for supplies and fixtures", "Coordinating maintenance vendors and confirming resolution", "Operational support for safety and facilities", "Onboarding · Offboarding Support", "Welcome kits and new-hire preparation", "Business cards, nameplates and ID card production", "Access registration and operational support", "Issuing and recovering work phones, lockers and extension numbers", "Recovery of assets and accounts for leavers", "Internal Communication", "Company-wide operational notices in Korean and English", "Office usage guides and etiquette announcements", "Announcements on policy and program changes", "Communication for internal events", "Producing operational signage and guidance materials", "Asset · Vehicle · Administration", "Asset audits and purchasing of work assets", "Corporate vehicle operations and change management", "Vehicle operations support including SCR production and tire rental", "Environmental data collection and management", "Handling official letters and external administrative requests", "Company-wide notices in Korean and English (Jun 2024 – Jun 2026)", "Internal operating guides · manuals · instructional videos", "Approximately 30 operating cost items<br/>closed every month", "Air tickets", "Corporate vehicles · Rentals", "Logistics warehouse", "Telecom", "Attendance devices", "Property and other taxes", "Membership fees", "Even while the office relocation and major projects were underway, I <b>kept the regular cost closing schedule running in parallel</b>.", "I built a team-assignment tool<br/>for 150 people with vibe coding.", "Condition 01", "No more than 3 people from the same division in one team", "Condition 02", "Any team including an expatriate must have an interpreter-capable member", "Constraint 03", "Entering employee-identifying information into an external service was ruled out for security reasons", "Using generative AI, I built a <span class=\"hl\">condition-based team-assignment tool through vibe coding</span>. It applies the division headcount limit and the interpreter placement rule automatically, and is structured so results can be verified repeatedly.", "It also exports the result as Excel and PDF along with a recording of the assignment process, making the outcome transparent and verifiable.", "150 people → 18 teams", "Multiple conditions applied automatically", "Condition conflict validation", "Excel / PDF export", "Process recorded on video", "I set standards so the work can be done once and stay done,<br/>and structure it so anyone can pick it up and use it right away.", "Meeting room operating policy<br/>Business travel · personal vehicle policies", "15+ operating guides<br/>Instructional videos · space signage", "ERP-based work processes<br/>Annual leave standards · employment rules", "Condition-based team-assignment tool<br/>Built to export results as Excel and PDF", "I find the tools I need<br/>within the environment I'm given", "Where existing tools can do the job, I use them fully. Where there is no budget or system, I <span class=\"hl\">combine Excel, AI and design tools to build an alternative</span>. If a capability is missing, I learn it myself and apply it to the actual work.", "Excel — Pivot · Conditional formatting · Macros · VBA", "Structuring information · Diagramming announcements", "Building condition-based tools", "Video and internal content production", "Announcement imagery and internal content produced with generative AI", "I design the communication structure first, then produce the imagery with generative AI, cutting content production time. Applied to quarterly internal announcements.", "Certificates held", "I hold <span class=\"hl\">7 certificates</span> across administration, accounting, tax and HR.", "Certificate", "Issuer", "Date passed", "Computer Proficiency Level 1", "Ministry of Employment and Labor", "Computerized Accounting Level 1", "Korean Association of Certified Public Tax Accountants", "FAT Level 1 <em>(Financial Accounting Technician)</em>", "Korean Institute of Certified Public Accountants", "TAT Level 2 <em>(Tax Accounting Technician)</em>", "Korean Institute of Certified Public Accountants", "ERP Information Manager (HR) Level 1", "Korea Productivity Center", "HRM Specialist", "Korean Association of Certified Public Labor Attorneys", "Driver's License, Class 2 Regular", "Chungcheongnam-do Provincial Police Agency", "AI Content Design Program", "Jul 2026 – ongoing", "Seoul Business Agency (SBA) · SeSAC Yangcheon Campus", "Content planning · Figma · Photoshop · Illustrator · AI image generation · Video editing · Landing and detail page production", "The Easiest AI Work Automation", "Sparta Club", "Research, document writing and data organization with generative AI and basic coding; prompt design; writing and editing code; automating work processes", "Financial Accounting Practitioner Program (FAT Level 1 · 2)", "Korea e-Learning Association · National Tomorrow Learning Card", "Completed training in financial accounting practice and FAT Level 1 · 2 preparation", "TAT Level 2 Preparation Program (Theory + Practical)", "Korea e-Learning Association · National Tomorrow Learning Card", "Completed training in tax accounting theory and practice and TAT Level 2 preparation", "<b>Continuous, practice-driven learning</b> — beyond formal programs, whenever I need a new capability or tool at work I find a course on Notion, generative AI or work automation, learn it, and apply it to the actual job.", "Sahmyook University, Business Information Systems · GPA 3.86 / 4.5", "Olive Young Shutterbrity, Cohorts 1 & 2 (Jul 2023 – Jun 2024)", "Newspaper Scrap Study Group Leader (Apr 2024 – Jun 2026)", "Organizer, Hangyedolpa Offline Study Group", "JANG HARI", "I find the gaps in operations and fill them with standards and processes."];
+  var EN=["Jang Hari<i>.</i>", "<b>01</b>Intro", "<b>02</b>At a Glance", "<b>03</b>Scope", "<b>04</b>Career", "<b>05</b>Office Relocation", "<b>06</b>Workplace", "<b>07</b>Asset · Vendor", "<b>08</b>Policy · System", "<b>09</b>ERP", "<b>10</b>Day-to-Day", "<b>12</b>Certificates", "<b>13</b>Contact", "JANG HARI", "A general affairs practitioner with hands-on experience across office relocation,<br/>assets, vendors, policy and workplace systems.", "Sony Korea, Corporate Service Team<br/>Jun 2024 – Jun 2026", "150 people · 1,800 → 800+ pyeong<br/>Two-stage office relocation", "Space · Asset · Cost<br/>Policy · System", "I find the gaps in operations<br/>and organize them into<br/>standards and processes.", "Across office, assets, vendors, policy and systems, I have handled organizational operations end to end. Rather than simply processing recurring problems, I have <span class=\"hl\">traced their causes and turned them into standards and processes that can be reused</span>.", "I understand the full context<br/>of general affairs", "I have run space, assets, cost and policy as one connected operation, covering the entire general affairs workflow.", "I turn recurring problems<br/>into standards and processes", "Inefficiencies found during operations were resolved through policy, systems and guides — and left behind as documented standards.", "I keep work moving<br/>between stakeholders", "I organized requirements from vendors, partner teams and employees, adjusted schedules and priorities, and followed through until the required action was complete.", "Experience at a glance", "employees", "Workplace operations for 150 people", "+ assets / year", "Hands-on role in a company-wide asset audit of 3,600+ items per year", "+ vendors", "Vendor contracts, operations and communication", "policies revised", "Revised the business travel and personal vehicle policies", "implementation", "Consolidated scattered work into ERP-based processes", "Scope of general affairs experience", "From operations to cost, policy and systems, I have <span class=\"hl\">covered a wide range of the practical work an organization needs</span>.", "Operations & Management", "Office relocation and new workspace operations", "Fixed asset audit, classification and redeployment", "Managing facility, security, telecom and rental vendors", "Meeting room, equipment and supply operations and improvement", "On-site response to facility issues and maintenance", "Producing and installing workspace signage and guidance materials", "Accounting & Tax", "Cost execution and monthly closing", "Purchase, sales and voucher management", "Managing procurement and settlement records", "Stakeholder Communication", "Company-wide operational notices in Korean and English", "Vendor contract terms, renewals and maintenance", "Coordinating schedules and requirements across teams", "Collecting user feedback and reflecting improvements", "Issue intake → vendor coordination → confirmation of resolution", "Business Support & Planning", "Analyzing operational data and deriving improvements", "Revising business travel and personal vehicle policies", "ERP implementation, customization and process integration", "Sourcing and comparing suppliers to improve cost and efficiency", "Documenting operational guides, standards and processes", "HR & People Operations", "Payroll calculation and payment <em class=\"src\">(CM Tech)</em>", "Annual leave operations and standards <em class=\"src\">(CM Tech)</em>", "Pilot validation for the time & attendance system", "Scenario checks by employment type and work arrangement", "Employment rules and HR operating standards <em class=\"src\">(CM Tech)</em>", "A career built on understanding<br/>operations and setting standards", "I learned operations on site, built structure in a small organization,<br/>and coordinated complex operations in a large one.\n      <span class=\"arcflow\"><i>OPERATE</i><u></u><i>BUILD</i><u></u><i>COORDINATE</i></span>", "General Affairs · Business Management", "Sony Korea<small>Corporate Service Team</small>", "Responsible for workplace operations for 150 employees, covering office, assets, cost, vendors, policy and systems. In particular, I delivered a two-stage office relocation over roughly three months, along with asset, space and system projects.", "Office Relocation", "Asset Audit", "Vendor Management", "Cost Operations", "Policy Improvement", "System Transition", "National Pension Service, Cheonan Branch<small>Intern</small>", "Handled COVID-19 paid leave subsidy work and withholding-record requests related to workplace special settlements, gaining public-sector administrative experience.", "COVID-19 Paid Leave Subsidy", "Workplace Administration", "Public Institution", "CM Tech<small>Business Management Team, Assistant Manager</small>", "In an environment with no integrated system, I handled business management and consolidated scattered HR, accounting and inventory work into ERP-based processes — from implementation planning and customization to data cleanup and department-level user training.", "ERP implementation", "Process integration", "HR · Compensation", "Payroll", "Policy Development", "Jangta Screen Golf<small>Manager</small>", "Handled overall on-site operations — facility and equipment checks, staff attendance, scheduling and pay, and supply management.", "Facility · Equipment", "Attendance · Scheduling", "Supply Management", "Capabilities extended from work outside general affairs", "Freelance English Tutor", "Curriculum design · Material creation · Structuring information from the learner's perspective", "Online Store (Blog Market)<small>Founder · 11 months</small>", "End-to-end operations — planning, sourcing, sales, delivery, CS and settlement", "Samsung SSD Construction Site<small>Safety Management</small>", "On-site safety management · Work permit review · TBM · PPE inspection · Risk assessment", "Two moves in three months, and the office<br/>was switched over <mark class=\"mk\">without a gap in work</mark>.", "Moving from a 1,800-pyeong office to a new 800-pyeong-class space, I ran asset selection and redeployment in step with the reduced footprint.", "150 people<br/>1,800 → 800+ pyeong<br/>2 moves<br/>approx. 3 months<br/>Seoul · Busan · Gunpo", "Relocation lead on the ground — vendor and schedule management<br/>Asset movement<br/>Space setup<br/>Company-wide notices<br/>On-site response (2 GA staff + 5 HR support)", "May 30 old office closed<br/>Jun 1 temporary office<br/>Jul 1 new office opened on schedule", "people", "Business continuity maintained", "moves", "Temporary office → New office", "sites", "Seoul · Busan · Gunpo", "pyeong", "Relocation with reduced footprint", "<mark class=\"mk\">Move-out, temporary office and new office build</mark> all ran at the same time.", "Because a temporary office had to run between closing the old office and opening the new one, I <span class=\"hl\">managed old-office move-out, temporary build, new build, asset movement and daily operations all in parallel</span>.", "Old office move-out complete", "Temporary office OPEN", "New head office OPEN", "Old office move-out", "Temporary office build", "Temporary office operation", "New head office build", "Asset sorting · reselection · movement", "Full period", "Daily operations in parallel", "Asset audit, cost closing, vendor maintenance and other ongoing operations", "<i></i>May 30 — Old office move-out complete · vacating and asset removal finished", "<i></i>Jun 1 — Temporary office OPEN · essential on-site teams resumed work", "<i></i>Jul 1 — New head office OPEN · opened on the planned date", "Head Office", "Move-out → Temporary → New", "Busan Office", "Relocation handled in parallel", "Gunpo Warehouse", "Warehouse setup · Asset movement · CCTV", "To fit the reduced footprint, existing furniture and equipment were <b>screened by condition and usability</b> and redeployed to the temporary and new offices.", "Vendors across 6 categories", "I coordinated the sequence between trades and their start and completion points.", "Interior", "Moving", "Telecom", "Furniture", "Security", "Rental", "Built 11 meeting rooms, and checked them<br/>in the actual usage environment.", "I reviewed the layout and equipment configuration of each room and coordinated installation schedules with vendors. After construction, I <span class=\"hl\">tested equipment connections and usage flow in the real environment</span> and produced a <b>guidebook and instructional videos</b> so employees could use the rooms right away.", "Meeting room layout review · equipment configuration", "Vendor meetings and installation coordination", "User environment testing · issue reproduction testing", "Guidebook and instructional video production", "User survey design and collection", "Feedback secured from 50 users", "Policy, guide and equipment improvements applied", "15 guides, instructional videos and space signage completed", "Meeting rooms", "11 rooms built for different purposes", "Operating docs", "Guidebook · Instructional video · Space signage", "User feedback", "Feedback collected from 50 users (33% of all employees)", "When something went wrong in a meeting room,<br/>I fixed it so it would not recur", "Rather than answering the same questions one by one, I <span class=\"hl\">collected user feedback, reproduced the issues and classified their causes</span>, then produced guides and fixed the equipment faults.", "Feedback secured from 50 users", "33% of all 150 employees", "After the rooms opened, I collected the problems and errors that came up in real use and <span class=\"hl\">reproduced them by testing in the same environment</span>. Confirmed issues were carried through to guide updates and equipment fixes, reducing errors.", "Problem detected", "Repeated questions right after opening — screen connection, double bookings", "Feedback from 50", "User survey captured actual pain points · 33% of all employees", "Reproduction testing", "Causes classified as usage, policy or equipment fault", "Improvements applied", "Results reflected in policy, guides and equipment", "15+ operational documents", "So employees could find what they needed without asking, I produced the operational materials before move-in.", "Meeting room guidebook", "Equipment instructional video", "Space signage", "Booking policy", "Running a 3,600-item annual asset audit,<br/>I also reviewed how it was managed.", "Asset audits and cost closing are not one-off tasks — they are <span class=\"hl\">work that repeats on a fixed cycle</span>. The audit runs annually, and I kept both the regular audit and the cost closing running while the office relocation was underway.", "Company-wide asset audit of 3,600 items per year", "20 partner vendors", "Approx. 30 cost items closed per month", "Hands-on participation in the team-level full audit", "Screening and redeploying reusable assets", "Vendor contracts, maintenance and cost closing", "Verified audit data integrity by matching the asset register against physical records", "Compared and reviewed alternative asset management solutions", "An ESG perspective applied to asset operations", "During the relocation, usable furniture and supplies were <span class=\"hl\">classified as reusable</span>,<br/>and the asset register was updated to match what was actually held.", "Existing office assets", "Furniture · Equipment · Monitors · Lockers", "Condition · purpose sorting", "Redeployed to temporary office", "70 monitors in good condition", "Desks · Lockers", "Equipment for 2 meeting rooms", "External warehouse storage", "Critical assets · Documents", "Items scheduled for the new office", "Recycling · Donation", "Assets no longer reusable", "Routed to recycling instead of disposal", "Reselection · movement", "New head office", "Jul 1 OPEN · Existing furniture and equipment reused", "Comparative review of asset management solutions<br/>that could integrate with internal systems via API", "Asset management relied heavily on manual checks and file handling. Judging that the same work repeated every audit cycle, I researched on my own <span class=\"hl\">whether system integration could replace it</span>.", "Current-state analysis", "Mapped the manual steps that repeat in audits and register management", "Alternative solution research", "Researched candidate asset management solutions that integrate with internal systems via API", "Multiple vendor meetings · comparison", "Compared features and adoption terms through vendor meetings", "Adoption review", "After internal review, the switch was not carried out", "Comparison criteria", "Integration scope", "Data migration", "Audit method", "Usability", "Adoption terms", "By comparing integration scope, data migration, usability and adoption terms, I <b>documented review criteria</b> that can be used for a future system transition.", "Vendor operations and cost closing", "vendors", "Contracts, renewals and maintenance for facility, telecom, security and rental", "items / month", "Approx. 30 cost items closed monthly · schedule maintained through the relocation period", "policies revised", "Policies revised to reflect<br/>how the environment had changed.", "By reviewing internal operating data alongside external benchmarks, I <span class=\"hl\">built the case for revision</span> and reflected the agreed standards in company policy.", "Business travel policy revision", "Reviewed actual travel spend data, raised the lodging limit and adjusted the daily allowance criteria.", "Data reviewed", "Travel frequency and lodging spend by region", "Actual spend against the existing lodging limit", "Travel days and daily allowance payment status", "Market lodging rates in key destinations · external institutional travel standards", "Personal vehicle policy revision", "Revised the fuel reimbursement standard by fuel type for personal vehicle use. Distance driven, fuel type and existing rates were reviewed to build the case for revision.", "Data reviewed", "Personal vehicle usage count and distance driven", "Usage by fuel type · existing reimbursement rates", "Recent fuel price levels and the long-term trend", "External institutional vehicle expense standards", "Mapping current operations", "Extracted travel and vehicle operating data from Admin to understand actual usage patterns and cost levels", "Benchmarking external standards and market trends", "Reviewed roughly ten years of fuel price movement alongside public-sector travel and vehicle regulations. For lodging, I surveyed actual rates near branch sites and in frequently visited regions to test whether the existing limits were still reasonable", "Turning findings into concrete revision criteria", "Combined fuel price trends, external institutional rules and regional lodging rates into realistic cost standards, then reflected them in the travel and vehicle policy amendments after internal review", "Policy applied · company-wide announcement", "Reflected the confirmed standards in company policy and proofread the Korean and English wording for consistency. Announced the revised cost standards company-wide so employees could understand them immediately", "Company-wide switch to 150 work phones,<br/>validated in the real environment before rollout", "I checked the internal systems the work-phone switch would touch — security, extension numbers, attendance devices, intranet — in advance,<br/>and <span class=\"hl\">surfaced issues that could arise in the real user environment during the pilot stage</span>.", "Company-wide work phone transition · hands-on owner", "PURCHASE", "PILOT", "PURCHASE", "SETUP", "ROLLOUT", "I owned the process from purchase through pilot validation, remaining-volume purchase, initial setup and company-wide distribution.", "Security settings", "Extension numbers", "Attendance device recognition", "Intranet compatibility", "Attendance system change · pilot validation", "I took part in the pilot test from the user's perspective, checked how each scenario applied, and documented errors and edge cases as feedback.", "Full-time · Contract", "Annual leave handling", "Remote work", "Core time", "ERP IMPLEMENTATION · CM TECH", "ERP CUSTOMIZATION", "A repetitive task that took about 60 minutes<br/>now takes around 2.", "The company had no enterprise system. HR, accounting and inventory were each managed in separate files. <span class=\"hl\">Within a limited budget, I led the ERP implementation and customization.</span>", "No integrated system", "HR, accounting and inventory data scattered", "Limited budget", "SOLE", "ERP implementation planning", "Customization", "Legacy data migration", "Department-level user training", "Vendor purchase & sales management: 60 min → 2 min (96.7% faster)", "Work processes standardized", "Department training delivered → adopted in daily work", "Vendor purchase & sales management", "Based on the repetitive task of looking up and consolidating data across multiple files by hand", "Before — manual work across separate files", "approx. 60 min", "After — ERP-based processing", "approx. 2 min", "Sole owner of office and business management work", "As the only administrative staff member, I handled the full range of business management work — HR, accounting, inventory and system operations.", "ERP implementation", "Implementation planning, customization, legacy data cleanup and department-level user training, all handled directly", "Process integration", "Consolidated HR, accounting and inventory work that had been managed in separate files into ERP-based processes", "HR · Accounting", "Payroll calculation and payment · annual leave standards · purchase, sales and voucher management · monthly closing", "After the system went live, I ran the user training as well.\n        <small>I explained the system to fit each team's way of working and focused the training on the functions they actually needed, so it would be used in real work.</small>", "The ongoing work that keeps<br/>the office running every day", "Alongside project work, I also carried the ongoing operations — <span class=\"hl\">welfare, facilities, onboarding and offboarding, communication, assets and cost closing</span>.", "Employee Support · Welfare", "Resort booking and usage support for employees", "Support for internal welfare programs", "Sending condolence and congratulatory flowers", "MRO and welfare-related purchasing and approvals", "Responding to employee requests", "Workplace · Facility Operations", "Responding to facility issues in the office", "Installing promotional materials and signage", "Purchasing and stock management for supplies and fixtures", "Coordinating maintenance vendors and confirming resolution", "Operational support for safety and facilities", "Onboarding · Offboarding Support", "Welcome kits and new-hire preparation", "Business cards, nameplates and ID card production", "Access registration and operational support", "Issuing and recovering work phones, lockers and extension numbers", "Recovery of assets and accounts for leavers", "Internal Communication", "Company-wide operational notices in Korean and English", "Office usage guides and etiquette announcements", "Announcements on policy and program changes", "Communication for internal events", "Producing operational signage and guidance materials", "Asset · Vehicle · Administration", "Asset audits and purchasing of work assets", "Corporate vehicle operations and change management", "Vehicle operations support including SCR production and tire rental", "Environmental data collection and management", "Handling official letters and external administrative requests", "Company-wide notices in Korean and English", "Internal operating guides · manuals", "Instructional videos included", "Approximately 30 operating cost items<br/>closed every month", "Air tickets", "Corporate vehicles · Rentals", "Logistics warehouse", "Telecom", "Attendance devices", "Property and other taxes", "Membership fees", "Even while the office relocation and major projects were underway, I <b>kept the regular cost closing schedule running in parallel</b>.", "I built a team-assignment tool<br/>for 150 people with vibe coding.", "Condition 01", "No more than 3 people from the same division in one team", "Condition 02", "Any team including an expatriate must have an interpreter-capable member", "Constraint 03", "Entering employee-identifying information into an external service was ruled out for security reasons", "Using generative AI, I built a <span class=\"hl\">condition-based team-assignment tool through vibe coding</span>. It applies the division headcount limit and the interpreter placement rule automatically, and is structured so results can be verified repeatedly.", "It also exports the result as Excel and PDF along with a recording of the assignment process, making the outcome transparent and verifiable.", "150 people → 18 teams", "Multiple conditions applied automatically", "Condition conflict validation", "Excel / PDF export", "Process recorded on video", "I set standards so the work can be done once and stay done,<br/>and structure it so anyone can pick it up and use it right away.", "Meeting room operating policy<br/>Business travel · personal vehicle policies", "15+ operating guides<br/>Instructional videos · space signage", "ERP-based work processes<br/>Annual leave standards · employment rules", "Condition-based team-assignment tool<br/>Built to export results as Excel and PDF", "I find the tools I need<br/>within the environment I'm given", "Where existing tools can do the job, I use them fully. Where there is no budget or system, I <span class=\"hl\">combine Excel, AI and design tools to build an alternative</span>. If a capability is missing, I learn it myself and apply it to the actual work.", "Excel — Pivot · Conditional formatting · Macros · VBA", "Structuring information · Diagramming announcements", "Building condition-based tools", "Video and internal content production", "Announcement imagery and internal content produced with generative AI", "I design the communication structure first, then produce the imagery with generative AI, cutting content production time. Applied to quarterly internal announcements.", "Certificates held", "I hold <span class=\"hl\">7 certificates</span> across administration, accounting, tax and HR.", "Certificate", "Issuer", "Date passed", "Computer Proficiency Level 1", "Ministry of Employment and Labor", "Computerized Accounting Level 1", "Korean Association of Certified Public Tax Accountants", "FAT Level 1 <em>(Financial Accounting Technician)</em>", "Korean Institute of Certified Public Accountants", "TAT Level 2 <em>(Tax Accounting Technician)</em>", "Korean Institute of Certified Public Accountants", "ERP Information Manager (HR) Level 1", "Korea Productivity Center", "HRM Specialist", "Korean Association of Certified Public Labor Attorneys", "Driver's License, Class 2 Regular", "Chungcheongnam-do Provincial Police Agency", "AI Content Design Program", "Jul 2026 – ongoing", "Seoul Business Agency (SBA) · SeSAC Yangcheon Campus", "Content planning · Figma · Photoshop · Illustrator · AI image generation · Video editing · Landing and detail page production", "The Easiest AI Work Automation", "Sparta Club", "Research, document writing and data organization with generative AI and basic coding; prompt design; writing and editing code; automating work processes", "Financial Accounting Practitioner Program (FAT Level 1 · 2)", "Korea e-Learning Association · National Tomorrow Learning Card", "Completed training in financial accounting practice and FAT Level 1 · 2 preparation", "TAT Level 2 Preparation Program (Theory + Practical)", "Korea e-Learning Association · National Tomorrow Learning Card", "Completed training in tax accounting theory and practice and TAT Level 2 preparation", "<b>Continuous, practice-driven learning</b> — beyond formal programs, whenever I need a new capability or tool at work I find a course on Notion, generative AI or work automation, learn it, and apply it to the actual job.", "Olive Young Shutterbrity, Cohorts 1 & 2 (Jul 2023 – Jun 2024)", "Newspaper Scrap Study Group Leader (Apr 2024 – Jun 2026)", "Organizer, Hangyedolpa Offline Study Group", "JANG HARI", "I find the gaps in operations and fill them with standards and processes."];
   var HAN=/[\uAC00-\uD7A3]/;
   var doc=document, units=[];
   function has(el){ return HAN.test(el.textContent); }
